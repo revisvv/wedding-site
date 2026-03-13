@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Юлия и Владимир — 15 августа 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root {
+    --cream: #f5eddb;
+    --brown: #5c3a1e;
+    --brown-bg: #7a5534;
+    --brown-dark: #3e2510;
+    --gold-line: #bfa46f;
+    --white: #fff;
+    --gray: #999;
+    --font-script: 'Marck Script', cursive;
+    --font-serif: 'Playfair Display', serif;
+    --font-body: 'Cormorant Garamond', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--brown-dark);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO SECTION ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--cream);
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  /* Floral SVG decorations */
+  .hero::before,
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    opacity: .35;
+    pointer-events: none;
+  }
+
+  .hero::before {
+    top: 5%;
+    left: -40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23bfa46f' stroke-width='1.5'%3E%3Cellipse cx='120' cy='180' rx='60' ry='80' transform='rotate(-20 120 180)'/%3E%3Cellipse cx='160' cy='140' rx='50' ry='70' transform='rotate(15 160 140)'/%3E%3Cellipse cx='80' cy='140' rx='45' ry='65' transform='rotate(-40 80 140)'/%3E%3Cellipse cx='140' cy='220' rx='55' ry='75' transform='rotate(25 140 220)'/%3E%3Cellipse cx='100' cy='250' rx='40' ry='60' transform='rotate(-10 100 250)'/%3E%3Ccircle cx='125' cy='175' r='12'/%3E%3Cline x1='120' y1='260' x2='100' y2='380' stroke-width='2'/%3E%3Cline x1='130' y1='270' x2='160' y2='370' stroke-width='1.8'/%3E%3Cellipse cx='280' cy='80' rx='18' ry='25' transform='rotate(30 280 80)'/%3E%3Cellipse cx='300' cy='65' rx='15' ry='20' transform='rotate(-15 300 65)'/%3E%3Cellipse cx='260' cy='70' rx='14' ry='22' transform='rotate(50 260 70)'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;
+  }
+
+  .hero::after {
+    bottom: 2%;
+    right: -40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23bfa46f' stroke-width='1.5'%3E%3Cellipse cx='250' cy='200' rx='90' ry='130' transform='rotate(25 250 200)'/%3E%3Cellipse cx='300' cy='160' rx='70' ry='100' transform='rotate(-15 300 160)'/%3E%3Cellipse cx='200' cy='240' rx='60' ry='90' transform='rotate(40 200 240)'/%3E%3Cline x1='260' y1='310' x2='240' y2='390' stroke-width='2'/%3E%3Cline x1='220' y1='300' x2='180' y2='380' stroke-width='1.8'/%3E%3Ccircle cx='120' cy='60' r='6'/%3E%3Ccircle cx='135' cy='45' r='4'/%3E%3Ccircle cx='110' cy='50' r='5'/%3E%3Cline x1='125' y1='65' x2='130' y2='95' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;
+  }
+
+  .hero__date {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(14px, 2vw, 20px);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeDown .8s ease forwards;
+  }
+
+  .hero__names {
+    font-family: var(--font-script);
+    font-size: clamp(56px, 12vw, 140px);
+    color: var(--brown);
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 1s .3s ease forwards;
+  }
+
+  .hero__names span {
+    display: block;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeUp 1s 1s ease forwards;
+  }
+
+  .hero__scroll svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--brown);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes fadeDown {
+    from { opacity:0; transform:translateY(-20px) }
+    to { opacity:1; transform:translateY(0) }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px) }
+    to { opacity:1; transform:translateY(0) }
+  }
+  @keyframes bounce {
+    0%,100% { transform:translateY(0) }
+    50% { transform:translateY(8px) }
+  }
+
+  /* ─── INFO SECTION (brown) ─── */
+  .info {
+    background: var(--brown-bg);
+    color: var(--white);
+    padding: 80px 20px 90px;
+  }
+
+  .info__title {
+    font-family: var(--font-script);
+    font-size: clamp(36px, 6vw, 64px);
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .info__divider {
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--gold-line);
+    margin: 0 auto 60px;
+    position: relative;
+  }
+  .info__divider::before {
+    content: '~';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: var(--gold-line);
+    background: var(--brown-bg);
+    padding: 0 8px;
+  }
+
+  .info__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .info-card {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .info-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .info-card__img-wrap {
+    position: relative;
+    width: 85%;
+    max-width: 300px;
+    margin: 0 auto 28px;
+    aspect-ratio: 1/1.1;
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 10px;
+  }
+
+  .info-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .info-card__heading {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px);
+    margin-bottom: 14px;
+  }
+
+  .info-card__text {
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto;
+    opacity: .9;
+  }
+
+  /* ─── FORM SECTION ─── */
+  .form-section {
+    background: var(--white);
+    padding: 80px 20px 100px;
+  }
+
+  .form-section__inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .form-section__title {
+    font-family: var(--font-serif);
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 48px);
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--brown-dark);
+  }
+
+  .form-section__subtitle {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 36px;
+    color: #555;
+  }
+
+  /* Form elements */
+  .field { margin-bottom: 32px; }
+
+  .field__label {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 10px;
+    position: relative;
+    color: var(--brown-dark);
+  }
+  .field__label .req { color: var(--brown); }
+
+  .field__label::after {
+    content: '';
+    display: inline-block;
+    width: 60%;
+    height: 1px;
+    background: #ddd;
+    vertical-align: middle;
+    margin-left: 12px;
+  }
+
+  .field__input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #333;
+    background: var(--white);
+    transition: border-color .3s;
+  }
+  .field__input:focus {
+    outline: none;
+    border-color: var(--brown);
+  }
+  .field__input::placeholder { color: #aaa; }
+
+  /* Radio / Checkbox groups */
+  .option-group { margin-bottom: 32px; }
+
+  .option-group__title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    color: var(--brown-dark);
+  }
+
+  .option-group__title--big {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 20px;
+    position: relative;
+  }
+  .option-group__title--big::after {
+    content: '';
+    display: inline-block;
+    width: 50%;
+    height: 1px;
+    background: #ddd;
+    vertical-align: middle;
+    margin-left: 12px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #444;
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.5;
+  }
+  .option input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .option__mark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #bbb;
+    background: var(--white);
+    transition: all .25s;
+  }
+  .option--radio .option__mark { border-radius: 50%; }
+  .option--checkbox .option__mark { border-radius: 2px; }
+
+  .option input:checked ~ .option__mark {
+    border-color: var(--brown);
+    background: var(--brown);
+  }
+  .option--radio input:checked ~ .option__mark::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--white);
+  }
+  .option--checkbox input:checked ~ .option__mark::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 5px;
+    width: 5px; height: 9px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .separator {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 36px 0;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--brown-dark);
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background .3s, transform .2s;
+    margin-top: 10px;
+  }
+  .submit-btn:hover {
+    background: var(--brown);
+    transform: translateY(-2px);
+  }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    padding: 24px;
+    background: #f0ebe0;
+    border-left: 4px solid var(--brown);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--brown-dark);
+    margin-top: 20px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--cream);
+    font-family: var(--font-script);
+    font-size: 24px;
+    color: var(--brown);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .info__grid {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      max-width: 400px;
+    }
+    .info-card__img-wrap {
+      width: 70%;
+    }
+    .hero::before, .hero::after {
+      width: 200px;
+      height: 200px;
+    }
+    .field__label::after,
+    .option-group__title--big::after {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <p class="hero__date">15 августа 2026</p>
+  <h1 class="hero__names">
+    <span>Юлия и</span>
+    <span>Владимир</span>
+  </h1>
+  <div class="hero__scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ═══════ INFO SECTION ═══════ -->
+<section class="info">
+  <h2 class="info__title">Ждем гостей</h2>
+  <span class="info__divider"></span>
+
+  <div class="info__grid">
+    <!-- Card 1 — Роспись -->
+    <div class="info-card">
+      <div class="info-card__img-wrap">
+        <img class="info-card__img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=440&fit=crop&q=80" alt="Интерьер ЗАГСа">
+      </div>
+      <h3 class="info-card__heading">Роспись</h3>
+      <p class="info-card__text">В 11:00 в ЗАГСе Дубны по адресу Московская ул., 8. Приходите за 10–15 минут до начала церемонии.</p>
+    </div>
+
+    <!-- Card 2 — Дресс-код -->
+    <div class="info-card">
+      <div class="info-card__img-wrap">
+        <img class="info-card__img" src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=440&fit=crop&q=80" alt="Одежда в пастельных тонах">
+      </div>
+      <h3 class="info-card__heading">Дресс-код</h3>
+      <p class="info-card__text">На ваше усмотрение! Но просим подбирать наряды в любых постельных тонах.</p>
+    </div>
+
+    <!-- Card 3 — Празднование -->
+    <div class="info-card">
+      <div class="info-card__img-wrap">
+        <img class="info-card__img" src="https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=440&fit=crop&q=80" alt="Праздничный стол">
+      </div>
+      <h3 class="info-card__heading">Празднование</h3>
+      <p class="info-card__text">С 15:00 душевный праздник в «Лимонаде» (ул. Дачная 1, стр.4).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FORM SECTION ═══════ -->
+<section class="form-section" id="rsvp">
+  <div class="form-section__inner">
+    <h2 class="form-section__title">Вопросы<br>для гостей</h2>
+    <p class="form-section__subtitle">Подтвердите, пожалуйста, своё присутствие на нашем торжестве!</p>
+
+    <form id="guestForm">
+      <!-- Имя -->
+      <div class="field">
+        <label class="field__label">Введите Ваше имя и фамилию <span class="req">*</span></label>
+        <input class="field__input" type="text" name="name" placeholder="Введите Ваше имя и фамилию" required>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Присутствие -->
+      <div class="option-group">
+        <p class="option-group__title option-group__title--big">Присутствие <span class="req">*</span></p>
+        <label class="option option--radio">
+          <input type="radio" name="attendance" value="yes" required>
+          <span class="option__mark"></span>
+          Я с удовольствием приду
+        </label>
+        <label class="option option--radio">
+          <input type="radio" name="attendance" value="yesWithPlusOne" required>
+          <span class="option__mark"></span>
+          Я с удовольствием приду с +1
+        </label>
+        <label class="option option--radio">
+          <input type="radio" name="attendance" value="no">
+          <span class="option__mark"></span>
+          К сожалению, не смогу присутствовать
+        </label>
+      </div>
+
+      <!-- Алкоголь -->
+      <div class="option-group">
+        <p class="option-group__title">Мы хотим, чтобы свадьба прошла весело, поэтому просим Вас выбрать алкоголь, который Вы предпочитаете:</p>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="champagne"><span class="option__mark"></span>Шампанское</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="red_dry"><span class="option__mark"></span>Красное сухое вино</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="red_semi"><span class="option__mark"></span>Красное полусладкое вино</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="white_semi"><span class="option__mark"></span>Белое полусладкое вино</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="white_dry"><span class="option__mark"></span>Белое сухое вино</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="whiskey"><span class="option__mark"></span>Виски</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="cognac"><span class="option__mark"></span>Коньяк</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="rum"><span class="option__mark"></span>Ром</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="gin"><span class="option__mark"></span>Джин</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="tequila"><span class="option__mark"></span>Текила</label>
+        <label class="option option--checkbox"><input type="checkbox" name="drinks" value="nonalc"><span class="option__mark"></span>Безалкогольные напитки</label>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Горячие блюда -->
+      <div class="option-group">
+        <p class="option-group__title">Так же уточните Ваши предпочтения в горячих блюдах:</p>
+        <label class="option option--radio">
+          <input type="radio" name="food" value="meat">
+          <span class="option__mark"></span>
+          Мясо
+        </label>
+        <label class="option option--radio">
+          <input type="radio" name="food" value="fish">
+          <span class="option__mark"></span>
+          Рыба
+        </label>
+        <label class="option option--radio">
+          <input type="radio" name="food" value="bird">
+          <span class="option__mark"></span>
+          Птица
+        </label>
+      </div>
+
+      <!-- Музыка -->
+      <div class="field">
+        <p class="option-group__title">Музыкальные композиции, которые хотели бы услышать на празднике</p>
+        <input class="field__input" type="text" name="music" placeholder="Музыкальные композиции, которые хотели бы услышать">
+      </div>
+
+      <button type="submit" class="submit-btn">Отправить</button>
+      <div class="success-msg" id="successMsg">Спасибо! Ваш ответ принят. Ждём Вас на нашем празднике! 🤍</div>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  Юлия & Владимир — 15.08.2026
+</footer>
+
+<script>
+  // Scroll-triggered card reveal
+  const cards = document.querySelectorAll('.info-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 150);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cards.forEach(card => observer.observe(card));
+
+  const GOOGLE_FORM_CONFIG = {
+    formId: '1FAIpQLSdV2NHiEzOowTNSmgedN-zM3U87erAJJGkE7D9E6hlIIeQ-GQ',
+    fields: {
+      name:       'entry.1263348948',
+      attendance: 'entry.918821352',
+      drinks:     'entry.1324582470',
+      food:       'entry.979515810',
+      music:      'entry.249650770',
+    }
+  };
+
+  // Маппинг значений чекбоксов на текст, совпадающий с вариантами Google Form
+  const DRINK_LABELS = {
+    champagne:  'Шампанское',
+    red_dry:    'Красное сухое вино',
+    red_semi:   'Красное полусладкое вино',
+    white_semi: 'Белое полусладкое вино',
+    white_dry:  'Белое сухое вино',
+    whiskey:    'Виски',
+    cognac:     'Коньяк',
+    rum:        'Ром',
+    gin:        'Джин',
+    tequila:    'Текила',
+    nonalc:     'Безалкогольные напитки',
+  };
+
+  const FOOD_LABELS = {
+    meat: 'Мясо',
+    fish: 'Рыба',
+    bird: 'Птица'
+  };
+
+  const ATTENDANCE_LABELS = {
+    yes: 'Я с удовольствием приду',
+    yesWithPlusOne: 'Я с удовольствием приду с +1',
+    no:  'К сожалению, не смогу присутствовать',
+  };
+
+  document.getElementById('guestForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = this.querySelector('.submit-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Отправка...';
+    btn.disabled = true;
+
+    // Собираем данные
+    const fd = new FormData(this);
+    const nameVal = fd.get('name');
+    const attendanceVal = fd.get('attendance');
+    const musicVal = fd.get('music');
+    const drinkValues = fd.getAll('drinks');
+    const foodValues = fd.getAll('food');
+
+    // Формируем URL для отправки в Google Forms
+    const url = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_CONFIG.formId}/formResponse`;
+    const params = new URLSearchParams();
+
+    // Имя
+    params.append(GOOGLE_FORM_CONFIG.fields.name, nameVal);
+
+    // Присутствие
+    params.append(GOOGLE_FORM_CONFIG.fields.attendance, ATTENDANCE_LABELS[attendanceVal] || '');
+
+    // Алкоголь (каждый выбранный вариант — отдельный параметр с тем же entry ID)
+    drinkValues.forEach(val => {
+      params.append(GOOGLE_FORM_CONFIG.fields.drinks, DRINK_LABELS[val] || val);
+    });
+
+    // Горячие блюда
+    foodValues.forEach(val => {
+      params.append(GOOGLE_FORM_CONFIG.fields.food, FOOD_LABELS[val] || val);
+    });
+
+    // Музыка
+    params.append(GOOGLE_FORM_CONFIG.fields.music, musicVal || '');
+
+    try {
+      // Отправляем через fetch (no-cors — Google Forms не возвращает CORS-заголовки,
+      // но данные всё равно доставляются и сохраняются)
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
+
+      // Показываем успех (при mode: no-cors мы не можем проверить статус,
+      // но если fetch не выбросил ошибку — данные отправлены)
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('rsvp').offsetTop, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error('Ошибка отправки:', err);
+      alert('Не удалось отправить форму. Проверьте интернет-соединение и попробуйте ещё раз.');
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
