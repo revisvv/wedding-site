@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -110,6 +111,7 @@
     text-transform: uppercase;
     color: var(--brown);
     margin-bottom: 90px;
+    margin-left: 45px;
     opacity: 0;
     animation: fadeDown .8s ease forwards;
   }
@@ -426,6 +428,16 @@
   }
 
   /* Submit button */
+  .recaptcha-wrap {
+    margin-bottom: 24px;
+  }
+  .recaptcha-error {
+    color: #c0392b;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+  }
+
   .submit-btn {
     display: inline-block;
     padding: 16px 48px;
@@ -559,10 +571,9 @@
   <img class="flower-decor flower-decor--white flower-form-right" src="flower_4_white.png" alt="" aria-hidden="true">
 
   <div class="form-section__inner">
-    <h2 class="form-section__title">Вопросы<br>для гостей</h2>
-    <p class="form-section__subtitle">Подтвердите, пожалуйста, своё присутствие на нашем торжестве!</p>
-
     <form id="guestForm">
+      <h2 class="form-section__title">Вопросы<br>для гостей</h2>
+      <p class="form-section__subtitle">Подтвердите, пожалуйста, своё присутствие на нашем торжестве!</p>
       <!-- Имя -->
       <div class="field">
         <label class="field__label">Введите Ваше имя и фамилию <span class="req">*</span></label>
@@ -635,9 +646,15 @@
         <input class="field__input" type="text" name="music" placeholder="Музыкальные композиции, которые хотели бы услышать">
       </div>
 
+      <!-- reCAPTCHA -->
+      <div class="recaptcha-wrap">
+        <div class="g-recaptcha" data-sitekey="6LcAHoosAAAAAOfyTMXi6NBurgVy2PtvgJyDULN6"></div>
+        <p class="recaptcha-error" id="recaptchaError"></p>
+      </div>
+
       <button type="submit" class="submit-btn">Отправить</button>
-      <div class="success-msg" id="successMsg">Спасибо! Ваш ответ принят. Ждём Вас на нашем празднике! 🤍</div>
     </form>
+    <div class="success-msg" id="successMsg">Спасибо! Ваш ответ принят. Ждём Вас на нашем празднике! 🤍</div>
   </div>
 </section>
 
@@ -694,6 +711,16 @@
 
   document.getElementById('guestForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    // Проверяем reCAPTCHA
+    const recaptchaResponse = grecaptcha.getResponse();
+    const recaptchaError = document.getElementById('recaptchaError');
+    if (!recaptchaResponse) {
+      recaptchaError.textContent = 'Пожалуйста, подтвердите, что вы не робот';
+      recaptchaError.style.display = 'block';
+      return;
+    }
+    recaptchaError.style.display = 'none';
 
     const btn = this.querySelector('.submit-btn');
     const originalText = btn.textContent;
@@ -752,6 +779,7 @@
       alert('Не удалось отправить форму. Проверьте интернет-соединение и попробуйте ещё раз.');
       btn.textContent = originalText;
       btn.disabled = false;
+      grecaptcha.reset();
     }
   });
 </script>
