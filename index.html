@@ -55,38 +55,59 @@
   }
 
   /* Individual flower positions */
-  .flower-hero-right {
+  .flower-hero-top-right {
     top: -5%;
-    right: -4%;
-    width: clamp(250px, 30vw, 450px);
+    right: -8%;
+    width: clamp(300px, 30vw, 550px);
+    transform: rotate(-40deg);
+  }
+  .flower-hero-top-left {
+    top: -5%;
+    left: 0;
+    width: clamp(300px, 30vw, 550px);
     transform: rotate(-40deg);
   }
 
-  .flower-hero-left {
-    bottom: -8%;
-    left: -6%;
-    width: clamp(220px, 28vw, 420px);
+  .flower-hero-bottom-left {
+    bottom: -5%;
+    left: -5%;
+    width: clamp(350px, 30vw, 550px);
     transform: scaleX(-1) rotate(10deg);
+  }
+
+  .flower-hero-bottom-right {
+    bottom: -4%;
+    right: -5%;
+    width: clamp(350px, 30vw, 550px);
+    transform: scaleX(-1)  scaleY(-1) rotate(10deg);
   }
 
   .flower-info-br {
     bottom: -3%;
     right: -2%;
     width: clamp(280px, 32vw, 500px);
+    filter: brightness(0) saturate(100%) invert(95%) sepia(13%) saturate(245%) hue-rotate(354deg) brightness(98%) contrast(97%);
   }
 
   .flower-info-tl {
     top: -4%;
     left: -3%;
-    width: clamp(200px, 22vw, 360px);
-    transform: scaleX(-1) scaleY(-1);
+    width: clamp(350px, 30vw, 500px);
+    filter: brightness(0) saturate(100%) invert(95%) sepia(13%) saturate(245%) hue-rotate(354deg) brightness(98%) contrast(97%);
   }
 
   .flower-form-right {
-    top: 10%;
+    top: 0;
     right: -5%;
-    width: clamp(220px, 25vw, 380px);
-    transform: rotate(-5deg);
+    width: clamp(350px, 30vw, 550px);
+    transform: scaleX(-1) rotate(10deg);
+  }
+
+  .flower-form-bottom {
+    bottom: 0;
+    left: -7%;
+    width: clamp(350px, 30vw, 550px);
+    transform: rotate(-15deg);
   }
 
   /* ─── HERO SECTION ─── */
@@ -465,18 +486,27 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    .flower-hero-right,
-    .flower-hero-left {
-      width: 180px;
-      opacity: 0.25;
+    .flower-hero-top-right,
+    .flower-hero-bottom-left {
+      width: 300px;
+    }
+    .flower-hero-top-left {
+      width: 250px;
+    }
+    .flower-hero-top-right {
+      right: -14%;
     }
     .flower-info-br,
     .flower-info-tl {
-      width: 160px;
+      width: 250px;
+
     }
     .flower-form-right {
-      width: 150px;
-      opacity: 0.15;
+      top: -2%;
+    }
+    .flower-form-bottom,
+    .flower-form-right {
+      width: 200px;
     }
     .info__grid {
       grid-template-columns: 1fr;
@@ -502,8 +532,10 @@
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <!-- Decorative flowers -->
-  <img class="flower-decor flower-decor--cream flower-hero-right" src="flower_1_cream.png" alt="" aria-hidden="true">
-  <img class="flower-decor flower-decor--cream flower-hero-left" src="flower_4_cream.png" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--cream flower-hero-top-right" src="flower from bottom.svg" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--cream flower-hero-top-left" src="flower from top.svg" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--cream flower-hero-bottom-left" src="flowers center.svg" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--cream flower-hero-bottom-right" src="flowers corner.svg" alt="" aria-hidden="true">
 
   <p class="hero__date">15 августа 2026</p>
   <h1 class="hero__names">
@@ -521,8 +553,8 @@
 <!-- ═══════ INFO SECTION ═══════ -->
 <section class="info" id="info">
   <!-- Decorative flowers -->
-  <img class="flower-decor flower-decor--brown flower-info-br" src="flower_3_brown.png" alt="" aria-hidden="true">
-  <img class="flower-decor flower-decor--brown flower-info-tl" src="flower_2_brown.png" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--brown flower-info-br" src="flowers center another.svg" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--brown flower-info-tl" src="flowers corner.svg" alt="" aria-hidden="true">
 
   <h2 class="info__title">Ждем гостей</h2>
   <span class="info__divider"></span>
@@ -560,7 +592,8 @@
 <!-- ═══════ FORM SECTION ═══════ -->
 <section class="form-section" id="rsvp">
   <!-- Decorative flower -->
-  <img class="flower-decor flower-decor--white flower-form-right" src="flower_4_white.png" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--white flower-form-right" src="flower%20from%20top.svg" alt="" aria-hidden="true">
+  <img class="flower-decor flower-decor--white flower-form-bottom" src="flowers%20center.svg" alt="" aria-hidden="true">
 
   <div class="form-section__inner">
     <form id="guestForm">
