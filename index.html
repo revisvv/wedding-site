@@ -135,7 +135,7 @@
 
   .hero__names__and {
     position: absolute;
-    top: 65px;
+    top: 20%;
     right: 0;
   }
 
@@ -150,6 +150,8 @@
     transform: translateX(-50%);
     opacity: 0;
     animation: fadeUp 1s 1s ease forwards;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .hero__scroll svg {
@@ -521,13 +523,13 @@
       <span class="hero__names__vladimir">Владимир</span>
     </div>
   </h1>
-  <div class="hero__scroll">
+  <a href="#info" class="hero__scroll" aria-label="Прокрутить вниз">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
+  </a>
 </section>
 
 <!-- ═══════ INFO SECTION ═══════ -->
-<section class="info">
+<section class="info" id="info">
   <!-- Decorative flowers -->
   <img class="flower-decor flower-decor--brown flower-info-br" src="flower_3_brown.png" alt="" aria-hidden="true">
   <img class="flower-decor flower-decor--brown flower-info-tl" src="flower_2_brown.png" alt="" aria-hidden="true">
@@ -539,7 +541,7 @@
     <!-- Card 1 — Роспись -->
     <div class="info-card">
       <div class="info-card__img-wrap">
-        <img class="info-card__img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=440&fit=crop&q=80" alt="Интерьер ЗАГСа">
+        <img class="info-card__img" src="загс-фото.jpg" alt="Интерьер ЗАГСа">
       </div>
       <h3 class="info-card__heading">Роспись</h3>
       <p class="info-card__text">В 11:00 в ЗАГСе Дубны по адресу Московская ул., 8. Приходите за 10–15 минут до начала церемонии.</p>
@@ -548,19 +550,19 @@
     <!-- Card 2 — Дресс-код -->
     <div class="info-card">
       <div class="info-card__img-wrap">
-        <img class="info-card__img" src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=440&fit=crop&q=80" alt="Одежда в пастельных тонах">
+        <img class="info-card__img" src="дресс-код.jpg" alt="Одежда в пастельных тонах">
       </div>
-      <h3 class="info-card__heading">Дресс-код</h3>
-      <p class="info-card__text">На ваше усмотрение! Но просим подбирать наряды в любых постельных тонах.</p>
+      <h3 class="info-card__heading">Как одеться? (Дресс-код)</h3>
+      <p class="info-card__text">На ваше усмотрение! Но просим подбирать наряды в любых пастельных тонах.</p>
     </div>
 
     <!-- Card 3 — Празднование -->
     <div class="info-card">
       <div class="info-card__img-wrap">
-        <img class="info-card__img" src="https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=440&fit=crop&q=80" alt="Праздничный стол">
+        <img class="info-card__img" src="празднование.jpg" alt="Праздничный стол">
       </div>
       <h3 class="info-card__heading">Празднование</h3>
-      <p class="info-card__text">С 15:00 душевный праздник в «Лимонаде» (ул. Дачная 1, стр.4).</p>
+      <p class="info-card__text">С 15:00 душевный праздник в лофт баре «Лимонаде» (ул. Дачная 1, стр.4).</p>
     </div>
   </div>
 </section>
@@ -579,8 +581,6 @@
         <label class="field__label">Введите Ваше имя и фамилию <span class="req">*</span></label>
         <input class="field__input" type="text" name="name" placeholder="Введите Ваше имя и фамилию" required>
       </div>
-
-      <div class="separator"></div>
 
       <!-- Присутствие -->
       <div class="option-group">
@@ -602,6 +602,23 @@
         </label>
       </div>
 
+      <!-- Заселение -->
+      <div class="option-group">
+        <p class="option-group__title option-group__title--big">Вам негде остановиться в городе Дубна и нужна помощь с заселением? <span class="req">*</span></p>
+        <label class="option option--radio">
+          <input type="radio" name="accommodation" value="yes" required>
+          <span class="option__mark"></span>
+          Да
+        </label>
+        <label class="option option--radio">
+          <input type="radio" name="accommodation" value="no">
+          <span class="option__mark"></span>
+          Нет
+        </label>
+      </div>
+
+      <div class="separator"></div>
+
       <!-- Алкоголь -->
       <div class="option-group">
         <p class="option-group__title">Мы хотим, чтобы свадьба прошла весело, поэтому просим Вас выбрать алкоголь, который Вы предпочитаете:</p>
@@ -617,8 +634,6 @@
         <label class="option option--checkbox"><input type="checkbox" name="drinks" value="tequila"><span class="option__mark"></span>Текила</label>
         <label class="option option--checkbox"><input type="checkbox" name="drinks" value="nonalc"><span class="option__mark"></span>Безалкогольные напитки</label>
       </div>
-
-      <div class="separator"></div>
 
       <!-- Горячие блюда -->
       <div class="option-group">
@@ -679,6 +694,7 @@
       drinks:     'entry.1324582470',
       food:       'entry.979515810',
       music:      'entry.249650770',
+      accommodation: 'entry.1279943015',
     }
   };
 
@@ -709,6 +725,11 @@
     no:  'К сожалению, не смогу присутствовать',
   };
 
+  const ACCOMMODATION_LABELS = {
+    yes: 'Да',
+    no:  'Нет',
+  };
+
   document.getElementById('guestForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -731,6 +752,7 @@
     const fd = new FormData(this);
     const nameVal = fd.get('name');
     const attendanceVal = fd.get('attendance');
+    const accommodationVal = fd.get('accommodation');
     const musicVal = fd.get('music');
     const drinkValues = fd.getAll('drinks');
     const foodValues = fd.getAll('food');
@@ -744,6 +766,9 @@
 
     // Присутствие
     params.append(GOOGLE_FORM_CONFIG.fields.attendance, ATTENDANCE_LABELS[attendanceVal] || '');
+
+    // Заселение
+    params.append(GOOGLE_FORM_CONFIG.fields.accommodation, ACCOMMODATION_LABELS[accommodationVal] || '');
 
     // Алкоголь (каждый выбранный вариант — отдельный параметр с тем же entry ID)
     drinkValues.forEach(val => {
